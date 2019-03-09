@@ -3,6 +3,8 @@ package gopnikmod.client;
 import gopnikmod.GopnikMod;
 import gopnikmod.blocks.TileEntityFlag;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -29,14 +31,18 @@ public class TESRFlag extends TileEntitySpecialRenderer<TileEntityFlag> {
         double rotation = te.rotation;
         String flag = te.getFlagName();
 
+        GlStateManager.disableLighting();
         GL11.glPushMatrix();
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 60, 240);
+
         GL11.glTranslated(x, y, z);
         GL11.glTranslated(0.5, 0, 0.5);
         GL11.glRotated(rotation,0.0,1.0,0.0);
+
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(GopnikMod.MODID, "textures/blocks/flags/"+flag+".png"));
 
         int steps = 25;
-        float A = 0.2F, k = 10, w = 5;
+        float A = 0.4F, k = 10, w = 4F;
         float maxX = 4, maxY = 2;
         float theta = (Minecraft.getMinecraft().getSystemTime() / 1000.0F * w + te.phase) % 6.28F;
 
@@ -65,5 +71,6 @@ public class TESRFlag extends TileEntitySpecialRenderer<TileEntityFlag> {
         }
 
         GL11.glPopMatrix();
+        GlStateManager.enableLighting();
     }
 }
