@@ -3,6 +3,8 @@ itemGroup.gopnikmod=The Gopnik Mod
 
 # Blocks
 tile.gopnikmod:flag.soviet.name=Soviet Flag
+tile.gopnikmod:emblem.soviet.name=Soviet Emblem
+tile.gopnikmod:emblem.soviet_large.name=Soviet Emblem(Large)
 
 # Gui
 # gui.magicalsculpture:relic=Relic Slot

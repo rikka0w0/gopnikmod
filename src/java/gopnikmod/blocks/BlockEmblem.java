@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -20,7 +19,7 @@ import rikka.librikka.item.ISimpleTexture;
 import rikka.librikka.item.ItemBlockBase;
 
 public class BlockEmblem extends MetaBlock implements ISimpleTexture {
-    public static String[] subCls = new String[] {"soviet"};
+    public static String[] subCls = new String[] {"soviet", "soviet_large"};
 
     public BlockEmblem() {
         super("emblem",
@@ -42,11 +41,6 @@ public class BlockEmblem extends MetaBlock implements ISimpleTexture {
             int rotation = MathHelper.floor(placer.rotationYaw * 8.0F / 360.0F + 0.5D) & 7;
             ((TileEntityEmblem) te).rotation = 270-rotation*45;
         }
-    }
-
-    public String stateToEmblemName(IBlockState state) {
-        int meta = getMetaFromState(state);
-        return this.getSubBlockUnlocalizedNames()[meta];
     }
 
     ///////////////////////////////
