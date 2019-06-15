@@ -1,5 +1,6 @@
 package gopnikmod.client;
 
+import gopnikmod.blocks.BlockEmblem;
 import gopnikmod.blocks.BlockFlag;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -53,7 +54,8 @@ public class CustomStateMapper extends StateMapperBase implements IModelLoader {
         String blockName = splited[1];
         Block block = Block.getBlockFromName(blockDomain + ":" + blockName);
 
-        if (block instanceof BlockFlag)
+        if (block instanceof BlockFlag ||
+                block instanceof BlockEmblem)
             return new GhostModel();
 
         return null;

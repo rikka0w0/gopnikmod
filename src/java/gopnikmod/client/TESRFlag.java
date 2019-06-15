@@ -13,6 +13,12 @@ import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 public class TESRFlag extends TileEntitySpecialRenderer<TileEntityFlag> {
+    @Override
+    public boolean isGlobalRenderer(TileEntityFlag te)
+    {
+        return true;
+    }
+
     public static void startDrawingQuads() {
         Tessellator.getInstance().getBuffer().begin(7, DefaultVertexFormats.POSITION_TEX);
     }
