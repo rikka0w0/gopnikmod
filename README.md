@@ -1,7 +1,7 @@
 # The Gopnik Mod
 водка(Vodka), семечки(Sunflower Seeds), and more! The most SLAVIC Minecraft Mod! 
 
-Supported Minecraft Version: 1.12.2
+Supported Minecraft Version: 1.15.2
 
 # Dependencies
 [LibRikka](https://github.com/rikka0w0/librikka)
@@ -13,7 +13,7 @@ Supported Minecraft Version: 1.12.2
 1. `git clone https://github.com/rikka0w0/gopnikmod`
 1. `git submodule init` and `git submodule update` to get LibRikka
 1. `gradlew build` to build jars
-1. `gradlew setupDecompWorkspace` to setup a complete development environment.
+1. `gradlew genEclipseRuns` to setup a complete development environment.
 * On Windows: use `gradlew.bat` instead of `gradlew`
 
 # Notes
