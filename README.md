@@ -3,22 +3,33 @@
 
 Supported Minecraft Version: 1.15.2
 
+![Image](/screenshot.png)
+
 # Dependencies
 [LibRikka](https://github.com/rikka0w0/librikka)
 
-# Compiling and Testing
-1. Ensure that `Java` (found [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)), `Git` (found [here](http://git-scm.com/)) are installed correctly on your system.
-1. Create a base directory for the repo
-1. (On Windows) open Git CMD and navigate to the directory just created
+# Setup the Environment
+1. Ensure `Java` (found [here](https://www.java.com/en/download/manual.jsp)) and `Git` (found [here](http://git-scm.com/)) are properly installed on your system.
+1. Create a base directory for the repo (anywhere you like)
+1. On Windows, open either 'CMD' or Windows PowerShell, on Linux and MacOS, 
+launch a terminal, then navigate to the directory just created,
+and type the following commands:
 1. `git clone https://github.com/rikka0w0/gopnikmod`
 1. `git submodule init` and `git submodule update` to get LibRikka
-1. `gradlew build` to build jars
-1. `gradlew genEclipseRuns` to setup a complete development environment.
 * On Windows: use `gradlew.bat` instead of `gradlew`
 
+# Build and Test ![Image](/src/main/resources/assets/sime_essential/textures/item/tool_crowbar.png)
+1. Complete the steps in "Setup the Environment" section.
+1. In the repo root folder, execute `gradlew runData` to launch the data generator, generated resource files will be located at "/src/generated"
+1. If you just want to try this mod, run `gradlew runClient` to launch the game, otherwise skip this step.
+1. Execute `gradlew build` to build GopnikMod.
+1. Switch to the librikka directory under the repo root: `cd librikka`
+1. Execute `gradlew build` again to build LibRikka jars
+1. Jars files are in `build/libs` and `librikka\build\libs`
+*  The suffix of deobfuscated jars is "dev".
+*  __Obfuscated jars don't have any suffix, these jars are supposed to be used in normal minecraft games, copy them toyour `.minecraft\mods` directory __
+*  `XXXX-full.jar` includes LibRikka
+
 # Notes
-1. If you are using Intellij Idea, the IDE will configure LibRikka automatically, so you don't need to worry about this
-2. Obfuscated and deobfuscated jars needs LibRikka to work properly
-3. Navigate to librikka directory and use `gradlew build' to build LibRikka
-4. In standalone MineCraft, you need to have both `gopnikmod.jar` and `librikka.jar` in your `mods` folder
-5. `gopnikmod-full.jar` includes LibRikka
+For developers, run either `gradlew genIntellijRuns` or `gradlew genEclipseRuns`, then in your IDE, import build.gradle as a gradle project. 
+See Minecraft Forge readme for details.
