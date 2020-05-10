@@ -104,7 +104,7 @@ sourceSets {
     main {
         java {
             srcDir "src/main/java"
-            srcDir "librikka/src"
+            srcDir "librikka/src/main/java"
         }
         resources {
             srcDir "src/main/resources"
