@@ -138,6 +138,7 @@ task deobfJar(type: Jar, dependsOn: 'jar') {
     	excludes.addAll(["rikka/**"])
     }
     destinationDir = libsDir
+    manifest = jar.manifest
     classifier = 'dev'
 }
 
@@ -146,6 +147,7 @@ task standaloneJar(type: Jar, dependsOn: 'reobfJar') {
     	excludes.addAll(["rikka/**"])
     }
     destinationDir = libsDir
+    manifest = jar.manifest
 }
 
 artifacts {

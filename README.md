@@ -18,7 +18,7 @@ and type the following commands:
 1. `git submodule init` and `git submodule update` to get LibRikka
 * On Windows: use `gradlew.bat` instead of `gradlew`
 
-# Build and Test ![Image](/src/main/resources/assets/sime_essential/textures/item/tool_crowbar.png)
+# Build and Test ![Image](/src/main/resources/assets/sime_essential/textures/item/emblem_soviet.png)
 1. Complete the steps in "Setup the Environment" section.
 1. In the repo root folder, execute `gradlew runData` to launch the data generator, generated resource files will be located at "/src/generated"
 1. If you just want to try this mod, run `gradlew runClient` to launch the game, otherwise skip this step.
