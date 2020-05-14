@@ -1,17 +1,13 @@
 package gopnikmod;
 
-import gopnikmod.client.ModelDataProvider;
 import net.minecraft.block.Block;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(GopnikMod.MODID)
@@ -54,18 +50,6 @@ public class GopnikMod {
     	@SubscribeEvent
     	public static void onTileEntityTypeRegistration(final RegistryEvent.Register<TileEntityType<?>> event) {
     		BlockRegistry.registerTileEntities(event.getRegistry());
-    	}
-    	
-    	@SubscribeEvent
-    	public static void gatherData(GatherDataEvent event) {
-    		DataGenerator generator = event.getGenerator();
-    		ExistingFileHelper exfh = event.getExistingFileHelper();
-    		if (event.includeServer()) {
-
-    		}
-    		if (event.includeClient()) {
-    			generator.addProvider(new ModelDataProvider(generator, exfh));
-    		}
     	}
     }
 }
