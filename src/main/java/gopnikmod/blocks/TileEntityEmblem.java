@@ -13,13 +13,7 @@ public class TileEntityEmblem extends TileEntityDecorationBase {
     public List<BakedQuad> quadBuffer;
 
     @OnlyIn(Dist.CLIENT)
-    public boolean updateRender = false;
-
-    @Override
-    public boolean hasFastRenderer()
-    {
-        return true;
-    }
+    public boolean updateRender;
 
     @Override
     @OnlyIn(Dist.CLIENT)
