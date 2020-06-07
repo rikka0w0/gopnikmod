@@ -35,6 +35,32 @@ archivesBaseName = "gopnikmod"
 // Need this here so eclipse task generates correctly.
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
+// configure  the source folders
+sourceSets {
+    librikka {
+        java {
+            srcDir "librikka/src/main/java"
+        }
+        resources {
+            srcDir "librikka/src/main/resources"
+        }
+    }
+
+    main {
+        java {
+            srcDir "src/main/java"
+        }
+        resources {
+            srcDir "src/main/resources"
+            srcDir "src/generated/resources"
+            exclude '.cache'
+            exclude 'Thumbs.db'
+        }
+        compileClasspath += librikka.output
+        runtimeClasspath += librikka.output
+    }
+}
+
 minecraft {
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
@@ -61,6 +87,10 @@ minecraft {
                 gopnikmod {
                     source sourceSets.main
                 }
+                
+                librikka {
+                    source sourceSets.librikka
+                }
             }
         }
 
@@ -76,6 +106,10 @@ minecraft {
             mods {
                 gopnikmod {
                     source sourceSets.main
+                }
+                
+                librikka {
+                    source sourceSets.librikka
                 }
             }
         }
@@ -95,25 +129,22 @@ minecraft {
                 gopnikmod {
                     source sourceSets.main
                 }
+                
+                librikka {
+                    source sourceSets.librikka
+                }
             }
         }
     }
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir "src/main/java"
-            srcDir "librikka/src/main/java"
-        }
-        resources {
-            srcDir "src/main/resources"
-            srcDir "src/generated/resources"
-        }
-    }
+// Ref: https://stackoverflow.com/questions/61093029/how-to-add-another-sourceset-with-a-mod-in-minecraft-forge-forge-gradle-3
+configurations {
+    librikkaCompile.extendsFrom(compile)
+    librikkaCompileOnly.extendsFrom(compileOnly)
+    librikkaRuntimeOnly.extendsFrom(runtimeOnly)
 }
 
-jar.classifier = 'full'
 jar.version = version
 jar {
     manifest {
@@ -129,28 +160,22 @@ jar {
     }
 }
 
-ext.jarFile = zipTree(jar.archivePath)
 def libsDir = new File(System.getenv("LIBS_DIR") ?: "build/libs/")
-//jar.excludes.addAll(["rikka/**"])
 
 task deobfJar(type: Jar, dependsOn: 'jar') {
-    from(sourceSets.main.output) {
-    	excludes.addAll(["rikka/**"])
-    }
     destinationDir = libsDir
+    from sourceSets.main.output
     manifest = jar.manifest
     classifier = 'dev'
 }
 
-task standaloneJar(type: Jar, dependsOn: 'reobfJar') {
-    from(project.ext.jarFile) {
-    	excludes.addAll(["rikka/**"])
-    }
+task sourceJar(type: Jar) {
     destinationDir = libsDir
-    manifest = jar.manifest
+    from sourceSets.main.allSource
+    classifier "src"
 }
 
 artifacts {
     archives deobfJar
-    archives standaloneJar
+    archives sourceJar
 }
