@@ -8,7 +8,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(GopnikMod.MODID)
 public class GopnikMod {
@@ -33,17 +32,15 @@ public class GopnikMod {
 
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event) {
-            IForgeRegistry registry = event.getRegistry();
             BlockRegistry.initBlocks();
-            BlockRegistry.registerBlocks(registry, false);
+            BlockRegistry.registerBlocks(event.getRegistry());
         }
 
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event) {
-            IForgeRegistry registry = event.getRegistry();
             ItemRegistry.initItems();
-            BlockRegistry.registerBlocks(registry, true);
-            ItemRegistry.registerItems(registry);
+            BlockRegistry.registerBlockItems(event.getRegistry());
+            ItemRegistry.registerItems(event.getRegistry());
             
         }
         

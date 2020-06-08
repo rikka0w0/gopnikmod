@@ -21,8 +21,6 @@ public class ModelDataProvider extends BlockStateProvider implements ISimpleItem
 	
 	private void registerFake (Block block) {
 		VariantBlockStateBuilder builder = getVariantBuilder(block);
-		String namespace = block.getRegistryName().getNamespace();
-		String blockName =  block.getRegistryName().getPath();
 
 		final ModelFile modelFile = new ModelFile.ExistingModelFile(mcLoc("block/torch"), exfh);
 		builder.forAllStates((blockstate)->ConfiguredModel.builder().modelFile(modelFile).build());
